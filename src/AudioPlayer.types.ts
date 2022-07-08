@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, HTMLAttributes } from "react";
 
 export interface AudioPlayerProps extends Partial<HTMLAttributes<HTMLDivElement>> {
-  src: { title: string; url: string }[];
+  src: { title: string;  author?: string; image?: string; url: string }[];
   volume?: number;
   loop?: Loop;
   trackSliderClassName?: string;

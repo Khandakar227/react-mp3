@@ -17,6 +17,7 @@ export default function AudioPlayer({
   trackSliderColor = "#021C1E",
   trackSliderBg = "#6FB98F",
   buttonColor= "#000",
+  src,
   ...props
 }: AudioPlayerProps) {
   const [duration, setDuration] = useState(0);
@@ -47,7 +48,7 @@ export default function AudioPlayer({
   useEffect(() => {
     if (!audioRef.current.tagName) return;
     setTrackIndex(0);
-  }, [props.src, setTrackIndex]);
+  }, [src, setTrackIndex]);
   //Set audio volume if changes
   useEffect(() => {
     if (!audioRef.current.tagName) return;
@@ -96,14 +97,14 @@ export default function AudioPlayer({
    * Go to next track
    */
   const toNextTrack = () => {
-    if (trackIndex < props.src.length - 1) setTrackIndex(trackIndex + 1);
+    if (trackIndex < src.length - 1) setTrackIndex(trackIndex + 1);
     else setTrackIndex(0);
   };
   /**
    * select a random track
    */
   function toShuffledTrack() {
-    const trackNum = Math.floor(Math.random() * props.src.length);
+    const trackNum = Math.floor(Math.random() * src.length);
     setTrackIndex(trackNum);
   }
   /**
@@ -130,9 +131,9 @@ export default function AudioPlayer({
     );
   };
   return (
-    <div {...props} data-type="audioplayer">
+    <div className={props.className} style={props.style} data-type="audioplayer">
       <audio
-        src={props.src[trackIndex]?.url}
+        src={src[trackIndex]?.url}
         ref={audioRef}
         hidden={true}
         onLoadedMetadata={onLoadedMetadata}

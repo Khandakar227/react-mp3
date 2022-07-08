@@ -1,44 +1,69 @@
 {
-    "name": "react-mp3",
-    "private": false,
-    "version": "0.0.1",
-    "license": "MIT",
-    "description": "An audio player for React",
-    "authors": [
-        "Khandakar Shakib"
-    ],
-    "module": "./dist/esm/index.js",
-    "main": "./dist/cjs/index.js",
-    "types": "dist/esm//index.d.ts",
-    "publishConfig": {
-        "access": "public"
+  "name": "react-mp3",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Khandakar",
+  "main": "dist/index.js",
+  "module": "dist/react-mp3.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "analyze": "size-limit --why",
+    "build": "dts build",
+    "lint": "dts lint",
+    "prepare": "dts build",
+    "size": "size-limit",
+    "start": "dts watch",
+    "test": "dts test --passWithNoTests"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "dts lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "size-limit": [
+    {
+      "path": "dist/react-mp3.cjs.production.min.js",
+      "limit": "10 KB"
     },
-    "scripts": {
-        "start": "BROWSER=none react-scripts start",
-        "build": "react-scripts build",
-        "build-lib": "npm run build-lib:esm && npm run build-lib:cjs && node ./template/build.js $npm_config_name",
-        "build-lib:esm": "tsc --noEmit false --outDir dist/${npm_config_name}/esm",
-        "build-lib:cjs": "tsc --module commonjs --outDir dist/${npm_config_name}/cjs --noEmit false",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
-    "repository": {
-        "type": "git",
-        "url": ""
-    },
-    "peerDependencies": {
-        "react": "^16.x || ^17.x || ^18.x"
-    },
-    "devDependencies": {
-        "glob": "^8.0.3",
-        "minify": "^9.1.0",
-        "typescript": "^4.7.4"
-    },
-    "homepage": "https://github.com",
-    "keywords": [
-        "react",
-        "mp3",
-        "react-component",
-        "audio player"
-    ]
+    {
+      "path": "dist/react-mp3.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@tsconfig/create-react-app": "^1.0.2",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.12",
+    "dts-cli": "^1.5.2",
+    "husky": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "size-limit": "^7.0.8",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
 }
