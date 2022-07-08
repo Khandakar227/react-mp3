@@ -1,0 +1,44 @@
+{
+    "name": "react-mp3",
+    "private": false,
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "An audio player for React",
+    "authors": [
+        "Khandakar Shakib"
+    ],
+    "module": "./dist/esm/index.js",
+    "main": "./dist/cjs/index.js",
+    "types": "dist/esm//index.d.ts",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "start": "BROWSER=none react-scripts start",
+        "build": "react-scripts build",
+        "build-lib": "npm run build-lib:esm && npm run build-lib:cjs && node ./template/build.js $npm_config_name",
+        "build-lib:esm": "tsc --noEmit false --outDir dist/${npm_config_name}/esm",
+        "build-lib:cjs": "tsc --module commonjs --outDir dist/${npm_config_name}/cjs --noEmit false",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "peerDependencies": {
+        "react": "^16.x || ^17.x || ^18.x"
+    },
+    "devDependencies": {
+        "glob": "^8.0.3",
+        "minify": "^9.1.0",
+        "typescript": "^4.7.4"
+    },
+    "homepage": "https://github.com",
+    "keywords": [
+        "react",
+        "mp3",
+        "react-component",
+        "audio player"
+    ]
+}
