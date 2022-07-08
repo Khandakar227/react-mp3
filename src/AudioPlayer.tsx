@@ -1,16 +1,14 @@
-import React, { useRef, useState, useEffect, SyntheticEvent, CSSProperties } from "react";
+import React, { useRef, useState, useEffect, SyntheticEvent } from "react";
 import { useAudio } from "./audioContext";
 import { AudioPlayerProps } from "./AudioPlayer.types";
-import LoopIcon from "./icons/LoopIcon";
-import NextIcon from "./icons/NextIcon";
-import PauseIcon from "./icons/PauseIcon";
-import PlayIcon from "./icons/PlayIcon";
-import PrevIcon from "./icons/PrevIcon";
-import ShuffleIcon from "./icons/ShuffleIcon";
-import SpeakerIcon from "./icons/SpeakerIcon";
-import SpeakerOffIcon from "./icons/SpeakerOffIcon";
 import "./index.css";
-import TrackSlider from "./TrackSlider";
+import TrackSlider from "./components/TrackSlider";
+import PlayPauseButton from "./components/PlayPauseButton";
+import ShuffleButton from "./components/ShuffleButton";
+import PrevButton from "./components/PrevButton";
+import NextButton from "./components/NextButton";
+import LoopButton from "./components/LoopButton";
+import VolumeButton from "./components/VolumeButton";
 
 export default function AudioPlayer({
   showTime = true,
@@ -30,7 +28,6 @@ export default function AudioPlayer({
     loop,
     setLoop,
     shuffle,
-    setShuffle,
     volume,
     setVolume,
   } = useAudio();
@@ -41,7 +38,9 @@ export default function AudioPlayer({
     if (!audioRef.current.tagName) return;
 
     if (!isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
+    else {
+      audioRef.current.play().then(() => showMediaSession(src[trackIndex], src.length));
+    }
   }, [isPlaying, trackIndex]);
 
   //set track number to 0 if src changes
@@ -107,14 +106,6 @@ export default function AudioPlayer({
     const trackNum = Math.floor(Math.random() * src.length);
     setTrackIndex(trackNum);
   }
-  /**
-   * Change loop to repeat > no-repeat > repeat all
-   */
-  const onLoop = () => {
-    if (loop === "no-repeat") setLoop("repeat-once");
-    else if (loop === "repeat-once") setLoop("repeat-all");
-    else setLoop("no-repeat");
-  };
 
   const displayDuration = (time: number) => {
     function padZero(v: number) {
@@ -130,6 +121,26 @@ export default function AudioPlayer({
       padZero(time ? sec : 0)
     );
   };
+  const showMediaSession = (metadata:MediaMetadataInit, numOfTracks: number) => {
+    if (!('mediaSession' in navigator)) return
+    
+    navigator.mediaSession.metadata = new MediaMetadata(metadata);
+    
+    navigator.mediaSession.setActionHandler('play', function() {
+      setIsPlaying(true);
+      navigator.mediaSession.playbackState = "playing";
+    });
+    
+    navigator.mediaSession.setActionHandler('pause', function() {
+      setIsPlaying(false);
+      navigator.mediaSession.playbackState  = "paused";
+    });
+    navigator.mediaSession.setActionHandler('stop', function() {
+      setIsPlaying(false);
+    })
+    navigator.mediaSession.setActionHandler('previoustrack', toPrevTrack);
+    navigator.mediaSession.setActionHandler('nexttrack', toNextTrack)
+  }
   return (
     <div className={props.className} style={props.style} data-type="audioplayer">
       <audio
@@ -149,7 +160,7 @@ export default function AudioPlayer({
             trackSliderBg={trackSliderBg}
           />
         {showTime ? (
-          <div className="time">
+          <div data-type="time">
             <small>
               <time>{displayDuration(audioRef.current.currentTime)}</time>
             </small>
@@ -163,60 +174,13 @@ export default function AudioPlayer({
       </div>
       <div data-type="control-wrapper">
         <div data-type="control">
-          <button
-            name="shuffle"
-            title={shuffle ? "Shuffle" : "No shuffle"}
-            onClick={() => setShuffle(!shuffle)}
-          >
-            <ShuffleIcon height={12} width={12} stroke={buttonColor} color={buttonColor} />
-            <span data-name="no" style={{"--buttonTextColor": buttonColor} as CSSProperties}>{shuffle ? "" : "x"}</span>
-          </button>
-          <button
-            name="previous"
-            title="Previous track"
-            onClick={() => toPrevTrack()}
-          >
-            <PrevIcon stroke={buttonColor} color={buttonColor} />
-          </button>
-
-          {!isPlaying ? (
-            <button name="play" onClick={() => setIsPlaying(true)} title="Play">
-              <PlayIcon height={22} width={22} stroke={buttonColor} color={buttonColor} />
-            </button>
-          ) : (
-            <button
-              name="pause"
-              onClick={() => setIsPlaying(false)}
-              title="Pause"
-            >
-              <PauseIcon height={22} width={22} stroke={buttonColor} color={buttonColor} />
-            </button>
-          )}
-          <button name="next" title="Next track" onClick={() => toNextTrack()}>
-            <NextIcon stroke={buttonColor} color={buttonColor} />
-          </button>
-          <button
-            name="loop"
-            onClick={onLoop}
-            title={
-              loop === "repeat-once"
-                ? "Repeat one"
-                : loop === "no-repeat"
-                ? "No repeat"
-                : "Repeat all"
-            }
-          >
-            <LoopIcon height={12} width={12} stroke={buttonColor} color={buttonColor} />
-            <span data-name="no" style={{"--buttonTextColor": buttonColor} as CSSProperties}>{loop === "repeat-once" ? 1 : loop === "no-repeat" ? "x" : ""}</span>
-          </button>
+          <ShuffleButton buttonColor={buttonColor}/>
+          <PrevButton buttonColor={buttonColor}  />
+          <PlayPauseButton buttonColor={buttonColor} />
+          <NextButton buttonColor={buttonColor}  totalTrack={src.length}/>
+          <LoopButton buttonColor={buttonColor}  />
         </div>
-        <button name="volume" onClick={() => setVolume(volume > 0 ? 0: 1)}>
-            {volume > 0 ? (
-              <SpeakerIcon height={12} width={12} stroke={buttonColor} />
-            ) : (
-              <SpeakerOffIcon height={12} width={12} stroke={buttonColor} />
-            )}
-          </button>
+        <VolumeButton buttonColor={buttonColor}  />
       </div>
     </div>
   );

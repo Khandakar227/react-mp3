@@ -11,7 +11,7 @@ const App = () => {
 ];
   return (
     <AudioProvider>
-      < AudioPlayer src={src}/>
+      < AudioPlayer src={src} buttonColor="black"/>
       <button> Click </button>
     </AudioProvider>
   );

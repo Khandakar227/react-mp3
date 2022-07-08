@@ -1,5 +1,7 @@
 :root {
     --buttonTextColor: "#000";
+    --trackslider-color: #021C1E;
+    --trackslider-bg: #6FB98F;
 }
 [data-type="audioplayer"] {
   padding: 0 5px;
@@ -7,7 +9,7 @@
   padding: 5px 0;
   border-radius: 5px;
 }
-time.time {
+[data-type="time"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,6 +45,43 @@ time.time {
 [data-type="audioplayer"] [data-type="media"] {
   padding: 0 5px;
 }
+/* Slider css */
+.trackSlider-wraper {
+  position: relative;
+}
+.trackSlider-wraper input[type="range"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+progress[value]::-webkit-progress-value {
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) outset;
+  background-color: var(--trackslider-color);
+}
+progress[value]::-moz-progress-bar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 2px;
+  background-color: var(--trackslider-color);
+}
+progress[value]::-webkit-progress-bar {
+  background-color: var(--trackslider-bg);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.trackslider[value] {
+  width: 100%;
+  height: 5px;
+  background-color: var(--trackslider-bg);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  appearance: none;
+}
 @media screen and (min-width: 768px) {
   [data-type="audioplayer"] {
     display: flex;
@@ -59,7 +98,7 @@ time.time {
   [data-type="control-wrapper"] {
     justify-content: space-between;
   }
-  button[name="volume"] {
+  [data-type="audioplayer"] button[name="volume"] {
     padding: 4px;
     margin: 0 10px;
     display: block;
