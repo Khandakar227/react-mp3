@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import { useAudio } from '../audioContext';
 import { PrevIcon } from '../icons/PrevIcon';
 
-export default function PrevButton({ buttonColor, ...props }: { buttonColor?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default function PrevButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { trackIndex, setTrackIndex } = useAudio();
 
   /**
@@ -20,7 +20,7 @@ export default function PrevButton({ buttonColor, ...props }: { buttonColor?: st
       title="Previous track"
       onClick={() => toPrevTrack()}
     >
-      <PrevIcon stroke={buttonColor} color={buttonColor} />
+      <PrevIcon stroke={color} color={color} />
     </button>
   );
 }

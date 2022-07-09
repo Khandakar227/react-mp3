@@ -1,9 +1,11 @@
-import React, { HTMLAttributes } from 'react'
+import React, { HTMLAttributes, memo } from 'react'
 import { useAudio } from '../audioContext';
 import NextIcon from '../icons/NextIcon'
 
-export default function NextButton({ totalTrack, buttonColor, ...props }: { totalTrack: number, buttonColor?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
-    const {trackIndex, setTrackIndex} = useAudio()
+export default memo(function NextButton({ totalTrack, color, ...props }: { totalTrack: number, color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+    const {trackIndex, setTrackIndex} = useAudio();
+  console.log("Next");
+    
   /**
    * Go to next track
    */
@@ -14,7 +16,7 @@ export default function NextButton({ totalTrack, buttonColor, ...props }: { tota
 
   return (
     <button {...props} name="next" title="Next track" onClick={() => toNextTrack()}>
-    <NextIcon stroke={buttonColor} color={buttonColor} />
+    <NextIcon stroke={color} color={color} />
   </button>
   )
-}
+})

@@ -4,23 +4,23 @@ export default function TrackSlider({
   duration,
   trackProgress,
   className,
-  trackSliderColor="gold",
-  trackSliderBg="#eee",
+  color="gold",
+  bgColor="#eee",
   onScrub
 }: {
   duration: number;
   trackProgress: number;
-  trackSliderColor?: string,
-  trackSliderBg?: string,
+  color?: string,
+  bgColor?: string,
   className?: string;
   onScrub: Function
 }) {
   return (
-    <div className="trackSlider-wraper">
+    <div data-type="trackSlider-wraper">
       <progress
         max={duration}
-        className="trackslider"
-        style={{"--trackslider-color": trackSliderColor, "--trackslider-bg": trackSliderBg} as CSSProperties}
+        data-type="trackslider"
+        style={{"--trackslider-color": color, "--trackslider-bg": bgColor} as CSSProperties}
         value={isNaN(trackProgress) ? 0 : trackProgress}
       ></progress>
       <input

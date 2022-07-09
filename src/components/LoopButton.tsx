@@ -2,7 +2,7 @@ import React, { CSSProperties, HTMLAttributes } from 'react';
 import { useAudio } from '../audioContext';
 import LoopIcon from '../icons/LoopIcon';
 
-export default function LoopButton({ buttonColor, ...props }: { buttonColor?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default function LoopButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { loop, setLoop } = useAudio();
 
   /**
@@ -29,12 +29,12 @@ export default function LoopButton({ buttonColor, ...props }: { buttonColor?: st
       <LoopIcon
         height={12}
         width={12}
-        stroke={buttonColor}
-        color={buttonColor}
+        stroke={color}
+        color={color}
       />
       <span
         data-name="no"
-        style={{ '--buttonTextColor': buttonColor } as CSSProperties}
+        style={{ '--buttonTextColor': color } as CSSProperties}
       >
         {loop === 'repeat-once' ? 1 : loop === 'no-repeat' ? 'x' : ''}
       </span>

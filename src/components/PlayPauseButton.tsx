@@ -3,7 +3,7 @@ import { useAudio } from '../audioContext';
 import PauseIcon from '../icons/PauseIcon';
 import PlayIcon from '../icons/PlayIcon';
 
-export default function PlayPauseButton({ buttonColor, ...props }: { buttonColor?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default function PlayPauseButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { isPlaying, setIsPlaying } = useAudio();
 
   if (!isPlaying)
@@ -12,18 +12,18 @@ export default function PlayPauseButton({ buttonColor, ...props }: { buttonColor
         <PlayIcon
           height={22}
           width={22}
-          stroke={buttonColor}
-          color={buttonColor}
+          stroke={color}
+          color={color}
         />
       </button>
     );
   return (
-    <button name="pause" onClick={() => setIsPlaying(false)} title="Pause">
+    <button {...props} name="pause" onClick={() => setIsPlaying(false)} title="Pause">
       <PauseIcon
         height={22}
         width={22}
-        stroke={buttonColor}
-        color={buttonColor}
+        stroke={color}
+        color={color}
       />
     </button>
   );

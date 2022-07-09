@@ -1,9 +1,10 @@
-import React, { CSSProperties, HTMLAttributes } from 'react';
+import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import ShuffleIcon from '../icons/ShuffleIcon';
 
-export default function ShuffleButton({ buttonColor, ...props }: { buttonColor?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default memo(function ShuffleButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { shuffle, setShuffle } = useAudio();
+  console.log("Shuffle");
 
   return (
     <button
@@ -15,15 +16,15 @@ export default function ShuffleButton({ buttonColor, ...props }: { buttonColor?:
       <ShuffleIcon
         height={12}
         width={12}
-        stroke={buttonColor}
-        color={buttonColor}
+        stroke={color}
+        color={color}
       />
       <span
         data-name="no"
-        style={{ '--buttonTextColor': buttonColor } as CSSProperties}
+        style={{ '--buttonTextColor': color } as CSSProperties}
       >
         {shuffle ? '' : 'x'}
       </span>
     </button>
   );
-}
+})

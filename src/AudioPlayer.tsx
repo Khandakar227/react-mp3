@@ -12,9 +12,14 @@ import VolumeButton from "./components/VolumeButton";
 
 export default function AudioPlayer({
   showTime = true,
+  showShuffle = true,
+  showVolume = true,
+  showNext = true,
+  showPrev = true,
+  showLoop = true,
   trackSliderColor = "#021C1E",
   trackSliderBg = "#6FB98F",
-  buttonColor= "#000",
+  buttonColor = "#000",
   src,
   ...props
 }: AudioPlayerProps) {
@@ -47,7 +52,9 @@ export default function AudioPlayer({
   useEffect(() => {
     if (!audioRef.current.tagName) return;
     setTrackIndex(0);
+
   }, [src, setTrackIndex]);
+
   //Set audio volume if changes
   useEffect(() => {
     if (!audioRef.current.tagName) return;
@@ -61,6 +68,7 @@ export default function AudioPlayer({
   };
   function onLoadedMetadata(e: SyntheticEvent<HTMLAudioElement, Event>) {
     if (!audioRef.current.tagName) return;
+
     setVolume(props.volume ?? 1);
     audioRef.current.volume = volume;
     setDuration(audioRef.current.duration);
@@ -146,7 +154,7 @@ export default function AudioPlayer({
       <audio
         src={src[trackIndex]?.url}
         ref={audioRef}
-        hidden={true}
+        preload="auto"
         onLoadedMetadata={onLoadedMetadata}
         onTimeUpdate={onTimeUpdate}
         onEnded={onEnded}
@@ -156,8 +164,8 @@ export default function AudioPlayer({
             duration={duration}
             onScrub={onScrub}
             trackProgress={trackProgress}
-            trackSliderColor={trackSliderColor}
-            trackSliderBg={trackSliderBg}
+            color={trackSliderColor}
+            bgColor={trackSliderBg}
           />
         {showTime ? (
           <div data-type="time">
@@ -172,15 +180,16 @@ export default function AudioPlayer({
           ""
         )}
       </div>
+      
       <div data-type="control-wrapper">
         <div data-type="control">
-          <ShuffleButton buttonColor={buttonColor}/>
-          <PrevButton buttonColor={buttonColor}  />
-          <PlayPauseButton buttonColor={buttonColor} />
-          <NextButton buttonColor={buttonColor}  totalTrack={src.length}/>
-          <LoopButton buttonColor={buttonColor}  />
+          {showShuffle ? <ShuffleButton color={buttonColor}/> : ""}
+          {showPrev ? <PrevButton color={buttonColor}  /> : ""}
+          <PlayPauseButton color={buttonColor} />
+          {showNext ? <NextButton color={buttonColor}  totalTrack={src.length}/> : ""}
+          {showLoop ? <LoopButton color={buttonColor}  /> : ""}
         </div>
-        <VolumeButton buttonColor={buttonColor}  />
+        {showVolume ? <VolumeButton color={buttonColor}  /> : ""}
       </div>
     </div>
   );
