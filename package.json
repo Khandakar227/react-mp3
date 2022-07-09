@@ -1,6 +1,6 @@
 {
   "name": "react-mp3",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "author": "Khandakar",
   "main": "dist/index.js",
