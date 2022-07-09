@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, HTMLAttributes } from 'react';
+import { Dispatch, SetStateAction, HTMLAttributes, SyntheticEvent, ReactEventHandler } from 'react';
 
 export interface AudioPlayerProps
-  extends Partial<HTMLAttributes<HTMLDivElement>> {
+  extends Partial<Omit<HTMLAttributes<HTMLDivElement>, "onError">> {
   /**
    * Array of audio url, title, artist, artwork.
    */
@@ -58,6 +58,15 @@ export interface AudioPlayerProps
    * Current track number. `0` as first track
    */
   currentTrackNum?: number;
+  /**
+   * Display title, artist name, and artwork. default is `true`.
+   */
+  showCover?: boolean;
+  onError?: ReactEventHandler<HTMLAudioElement>;
+  /**
+   * track slider and controls position. Default is `row`.
+   */
+  flexDirection?: "row" | "row-reverse" | "column" | "column-reverse" | "inherit" | "initial" | "unset"
   [key: string]: any;
 }
 

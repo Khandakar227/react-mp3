@@ -1,9 +1,9 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import PauseIcon from '../icons/PauseIcon';
 import PlayIcon from '../icons/PlayIcon';
 
-export default function PlayPauseButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default memo(function PlayPauseButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { isPlaying, setIsPlaying } = useAudio();
 
   if (!isPlaying)
@@ -27,4 +27,4 @@ export default function PlayPauseButton({ color, ...props }: { color?: string, p
       />
     </button>
   );
-}
+})

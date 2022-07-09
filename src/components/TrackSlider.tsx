@@ -16,7 +16,7 @@ export default function TrackSlider({
   onScrub: Function
 }) {
   return (
-    <div data-type="trackSlider-wraper">
+    <div data-type="trackSlider-wraper" className={className}>
       <progress
         max={duration}
         data-type="trackslider"

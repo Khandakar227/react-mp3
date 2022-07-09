@@ -1,8 +1,8 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import { PrevIcon } from '../icons/PrevIcon';
 
-export default function PrevButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default memo(function PrevButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { trackIndex, setTrackIndex } = useAudio();
 
   /**
@@ -23,4 +23,4 @@ export default function PrevButton({ color, ...props }: { color?: string, props?
       <PrevIcon stroke={color} color={color} />
     </button>
   );
-}
+})

@@ -1,8 +1,8 @@
-import React, { CSSProperties, HTMLAttributes } from 'react';
+import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import LoopIcon from '../icons/LoopIcon';
 
-export default function LoopButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+export default memo(function LoopButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { loop, setLoop } = useAudio();
 
   /**
@@ -40,4 +40,4 @@ export default function LoopButton({ color, ...props }: { color?: string, props?
       </span>
     </button>
   );
-}
+});
