@@ -71,7 +71,7 @@ export default function AudioPlayer({
     setTrackProgress(audioRef.current.currentTime);
   };
   function checkArtwork() {
-    if (!src[trackIndex].artwork || !src[trackIndex]?.artwork?.length)
+    if (!src[trackIndex]?.artwork || !src[trackIndex]?.artwork?.length)
       return false;
     return true;
   }
