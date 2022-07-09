@@ -220,7 +220,7 @@ export default function AudioPlayer({
         <div data-type="control-wrapper">
           <div data-type="control">
             {showShuffle ? <ShuffleButton color={buttonColor} /> : ''}
-            {showPrev ? <PrevButton color={buttonColor} /> : ''}
+            {showPrev ? <PrevButton totalTrack={src.length} color={buttonColor} /> : ''}
             <PlayPauseButton color={buttonColor} />
             {showNext ? (
               <NextButton color={buttonColor} totalTrack={src.length} />

@@ -7,7 +7,7 @@ export interface AudioPlayerProps
    */
   src: AudioPlayerSrc[];
   /**
-   * Volume of the audio. value between 0-1.
+   * Audio volume. A value between 0 and 1.
    */
   volume?: number;
   /**
