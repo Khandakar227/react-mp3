@@ -102,7 +102,7 @@ const App = () => {
     <AudioProvider>
       <main className="max-w-4xl mx-auto pb-32">
         <div className="flex gap-2 justify-start items-center p-1 mx-auto">
-          <img src="public/react-mp3.png" alt="React-mp3 logo" className="h-16" />
+          <img src="react-mp3.png" alt="React-mp3 logo" className="h-16" />
           <h1 className="flex-auto font-bold text-2xl sm:text-3xl">
             Demo for React mp3
           </h1>
