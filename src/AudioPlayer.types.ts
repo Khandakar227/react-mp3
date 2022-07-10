@@ -70,7 +70,7 @@ export interface AudioPlayerProps
   /**
    * background color for buttons. Default is `#6fb98f`
    */
-  buttonBgColor?: string | "";
+  buttonBgColor?: string;
   /**
    * text color of the audioplayer
    */

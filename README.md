@@ -3,6 +3,7 @@
 <!-- <img src="./docs/Logo.jpg" alt="Svelte mp3 Logo" /> -->
 
 This is a light blazingly fast, simple audio player for react.
+Here's a [Demo](https://khandakar227.github.io/react-mp3/example)
 
 ## Installation
 
@@ -107,6 +108,8 @@ a range slider.
 
 `VolumeButton`:
 a button to mute or unmute track.
+### Icons
+`LoopIcon`, `NextIcon`, `PlayIcon`,`PauseIcon`, `PrevIcon`, `ShuffleIcon`, `SpeakerIcon`,`SpeakerOffIcon`.
 
 ## Props
 
@@ -122,10 +125,15 @@ name | type | default | defination |
 `showPrev`  | `boolean` | `true`  | Show the previous button. The default value is `true.`|
 `showNext`  | `boolean` | `true`  | Show the next button. The default value is `true.`| 
 `showShuffle`  | `boolean` | `true`  | Show the shuffle button. The default value is `true.`|
+`showCover`  | `boolean` | `true`  |Showcase the title, artist name, and artwork. The default value is `true.` |
 `trackSliderColor`  | `string` | `#021C1E`  | Track slider`s color when there`s value|
 `trackSliderBg`  | `string` | `#6FB98F`  | Background color of the track slider|
 `buttonColor`  | `string` | `#000`  | The color of the audio player`s buttons|
+`buttonBgColor`  | `string` | `#6fb98f`  | background color for buttons. Default is `#6fb98f` |
 `currentTrackNum`  | `number` | `0`  | The current track number `0` as the opening track |
-`showCover`  | `boolean` | `true`  |Showcase the title, artist name, and artwork. The default value is `true.` |
 `onError`  | `ReactEventHandler<HTMLAudioElement>` | `null`  | Handle audio player related error with `onError` function |
 `flexDirection`  | flex-direction CSS value | `"row"`  |track slider and controls position. The default value is `row`. |
+`textColor`  | `string | `"#000"`  | The default value is `#000`. |
+
+## Improvements
+Feel free to update, issue, improve this package. Fork the repo, make your changes and pull request.

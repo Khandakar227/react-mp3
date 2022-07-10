@@ -1,7 +1,9 @@
 import 'react-app-polyfill/ie11';
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import AudioPlayer, { AudioProvider } from 'react-mp3';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Section from './Section';
 import './output.css';
 
@@ -99,7 +101,7 @@ const App = () => {
 
   return (
     <AudioProvider>
-      <main className="max-w-4xl mx-auto pb-16">
+      <main className="max-w-4xl mx-auto pb-32">
         <div className="flex gap-2 justify-start items-center p-1 mx-auto">
           <img src="/react-mp3.png" alt="React-mp3 logo" className="h-16" />
           <h1 className="flex-auto font-bold text-2xl sm:text-3xl">
@@ -149,9 +151,25 @@ const App = () => {
             </button>
           ))}
         </div>
+        <div className='py-5 px-1'>
+            <SyntaxHighlighter language='jsx' style={atomDark} showLineNumbers={true}>
+{`<AudioPlayer
+  src={src}
+  className='${theme.className}'
+  buttonColor='${theme.buttonColor}'
+  buttonBgColor='${theme.buttonBgColor}'
+  textColor='${theme.textColor}'
+  trackSliderBg='${theme.trackSliderBg}'
+  trackSliderColor='${theme.trackSliderColor}'
+  flexDirection='${theme.flexDirection}'
+/>`}
+            </SyntaxHighlighter>
+        </div>
       </main>
     </AudioProvider>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(<App />);
+
