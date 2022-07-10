@@ -10,7 +10,7 @@ export default function Section({ src }: { src: MediaMetadataInit[] }) {
     if (index === trackIndex) setIsPlaying(!isPlaying);
     else setIsPlaying(true);
   }
-  console.log(isPlaying);
+
   return (
     <div className="my-3 px-2">
       Setup entry point of your react app (i.e. App.jsx / App.tsx)
