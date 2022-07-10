@@ -1,4 +1,3 @@
-import 'react-app-polyfill/ie11';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import AudioPlayer, { AudioProvider } from 'react-mp3';

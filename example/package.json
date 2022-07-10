@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run watch:css | vite",
-    "build": "npm run watch:css | vite build",
+    "build": "tailwindcss -i src/index.css -o src/output.css | vite build",
     "watch:css": "tailwindcss -i src/index.css -o src/output.css --watch"
   },
   "dependencies": {
