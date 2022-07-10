@@ -22,7 +22,7 @@
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
   },
-  "homepage": "https://github.com/Khandakar227/react-mp3/example",
+  "homepage": "https://khandakar227.github.io/react-mp3/example",
   "devDependencies": {
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
