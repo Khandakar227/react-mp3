@@ -12,12 +12,9 @@
   "dependencies": {
     "react-app-polyfill": "^3.0.0",
     "react-mp3": "^0.1.1",
-    "react-syntax-highlighter": "^15.5.0"
-  },
-  "alias": {
-    "react": "../node_modules/react",
-    "react-dom": "../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
+    "react-syntax-highlighter": "^15.5.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
