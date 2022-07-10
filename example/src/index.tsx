@@ -5,14 +5,60 @@ import AudioPlayer, { AudioProvider } from 'react-mp3';
 import Section from './Section';
 import './output.css';
 
+const combinations = [
+  { text: 'text-black', bg: 'bg-emerald-400' },
+  { text: 'text-white', bg: 'bg-red-700' },
+  { text: 'text-orange-500', bg: 'bg-zinc-800' },
+];
+
 const App = () => {
   const [theme, setTheme] = useState({
     className: 'bg-white',
     buttonColor: 'black',
+    buttonBgColor: '#6fb98f',
+    textColor: '#000',
     trackSliderBg: 'white',
     trackSliderColor: 'black',
     flexDirection: 'row-reverse',
   });
+
+  function changeTheme(index: number) {
+    switch (index) {
+      case 1:
+        setTheme({
+          className: 'bg-red-800',
+          buttonColor: 'white',
+          buttonBgColor: 'black',
+          trackSliderBg: 'red',
+          textColor: 'white',
+          trackSliderColor: 'black',
+          flexDirection: 'row-reverse',
+        });
+        break;
+      case 2:
+        setTheme({
+        className: 'bg-zinc-800',
+        buttonColor: 'rgb(249 115 22)',
+        buttonBgColor: 'rgb(39 39 42)',
+        textColor: 'rgb(249 115 22)',
+        trackSliderBg: 'rgb(39 39 42)',
+        trackSliderColor: 'rgb(249 115 22)',
+        flexDirection: 'row',
+        })
+        break;
+      default:
+        setTheme({
+          className: 'bg-white',
+          buttonColor: 'black',
+          buttonBgColor: '#6fb98f',
+          textColor: 'black',
+          trackSliderBg: 'white',
+          trackSliderColor: 'black',
+          flexDirection: 'row-reverse',
+        });
+        break;
+    }
+  }
 
   const src = [
     {
@@ -76,20 +122,32 @@ const App = () => {
             src={src}
             className={theme.className}
             buttonColor={theme.buttonColor}
+            buttonBgColor={theme.buttonBgColor}
+            textColor={theme.textColor}
             trackSliderBg={theme.trackSliderBg}
             trackSliderColor={theme.trackSliderColor}
-            flexDirection={theme.flexDirection as "row-reverse" | "row" | "column" | "column-reverse"}
+            flexDirection={
+              theme.flexDirection as
+                | 'row-reverse'
+                | 'row'
+                | 'column'
+                | 'column-reverse'
+            }
           />
-
         </div>
         <h2 className="text-xl font-extrabold py-4"> Customizing </h2>
         <h3> Color combination </h3>
-        <hr className='text-opacity-80 my-1 mb-4'/>
-        <div className='grid gap-4 justify-start'>
-          <button className='py-2 font-bold px-4 shadow-black shadow-sm rounded'>Combination 1</button>
-          <button className='py-2 font-bold px-4 shadow-black shadow-sm rounded'>Combination 2</button>
-          <button className='py-2 font-bold px-4 shadow-black shadow-sm rounded'>Combination 3</button>
-
+        <hr className="text-opacity-80 my-1 mb-4" />
+        <div className="grid gap-4 justify-start">
+          {combinations.map((c, i) => (
+            <button
+              key={'button' + i}
+              className={`py-2 font-bold px-4 shadow-black shadow-sm rounded ${c.bg} ${c.text}`}
+              onClick={() => changeTheme(i)}
+            >
+              Combination {i + 1}
+            </button>
+          ))}
         </div>
       </main>
     </AudioProvider>

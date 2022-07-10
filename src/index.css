@@ -16,6 +16,7 @@
   justify-content: space-between;
   align-items: center;
   flex: auto;
+  color: var(--buttonTextColor);
 }
 [data-type='audioplayer'] button {
   background-color: var(--buttonBgColor);
@@ -99,6 +100,7 @@ progress[value]::-webkit-progress-bar {
   gap: 5px;
   display: flex;
   justify-content: space-between;
+  color: var(--buttonTextColor);
 }
 [data-type='audio-cover'] img {
   height: 100%;

@@ -2,7 +2,16 @@ import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import LoopIcon from '../icons/LoopIcon';
 
-export default memo(function LoopButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+interface ButtonProps extends Partial<HTMLAttributes<HTMLButtonElement>> {
+  bgColor: string;
+}
+
+export default memo(function LoopButton({
+  color,
+  bgColor,
+  style,
+  ...props
+}: ButtonProps) {
   const { loop, setLoop } = useAudio();
 
   /**
@@ -13,9 +22,11 @@ export default memo(function LoopButton({ color, ...props }: { color?: string, p
     else if (loop === 'repeat-once') setLoop('repeat-all');
     else setLoop('no-repeat');
   };
+
   return (
     <button
       {...props}
+      style={{ ...style, '--buttonBgColor': bgColor } as CSSProperties}
       name="loop"
       onClick={onLoop}
       title={
@@ -26,12 +37,7 @@ export default memo(function LoopButton({ color, ...props }: { color?: string, p
           : 'Repeat all'
       }
     >
-      <LoopIcon
-        height={12}
-        width={12}
-        stroke={color}
-        color={color}
-      />
+      <LoopIcon height={12} width={12} stroke={color} color={color} />
       <span
         data-name="no"
         style={{ '--buttonTextColor': color } as CSSProperties}

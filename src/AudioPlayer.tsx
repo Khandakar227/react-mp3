@@ -22,6 +22,8 @@ export default function AudioPlayer({
   trackSliderColor = '#021C1E',
   trackSliderBg = '#6FB98F',
   buttonColor = '#000',
+  buttonBgColor = "#6fb98f",
+  textColor = "#0000",
   src,
   onError,
   ...props
@@ -176,7 +178,7 @@ export default function AudioPlayer({
         onEnded={onEnded}
       ></audio>
       {showCover ? (
-        <div data-type="audio-cover">
+        <div data-type="audio-cover" style={{color: textColor}}>
           {checkArtwork() ? (
             <img
               src={src[trackIndex]?.artwork?.at(0)?.src}
@@ -204,7 +206,7 @@ export default function AudioPlayer({
             bgColor={trackSliderBg}
           />
           {showTime ? (
-            <div data-type="time">
+            <div data-type="time" style={{color: textColor}}>
               <small>
                 <time>{displayDuration(audioRef.current.currentTime)}</time>
               </small>
@@ -219,17 +221,17 @@ export default function AudioPlayer({
 
         <div data-type="control-wrapper">
           <div data-type="control">
-            {showShuffle ? <ShuffleButton color={buttonColor} /> : ''}
-            {showPrev ? <PrevButton totalTrack={src.length} color={buttonColor} /> : ''}
-            <PlayPauseButton color={buttonColor} />
+            {showShuffle ? <ShuffleButton bgColor={buttonBgColor}  color={buttonColor} /> : ''}
+            {showPrev ? <PrevButton bgColor={buttonBgColor} totalTrack={src.length} color={buttonColor} /> : ''}
+            <PlayPauseButton bgColor={buttonBgColor} color={buttonColor} />
             {showNext ? (
-              <NextButton color={buttonColor} totalTrack={src.length} />
+              <NextButton bgColor={buttonBgColor} color={buttonColor} totalTrack={src.length} />
             ) : (
               ''
             )}
-            {showLoop ? <LoopButton color={buttonColor} /> : ''}
+            {showLoop ? <LoopButton bgColor={buttonBgColor} color={buttonColor} /> : ''}
           </div>
-          {showVolume ? <VolumeButton color={buttonColor} /> : ''}
+          {showVolume ? <VolumeButton bgColor={buttonBgColor} color={buttonColor} /> : ''}
         </div>
       </div>
     </div>

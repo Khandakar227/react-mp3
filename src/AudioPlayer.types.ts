@@ -43,15 +43,15 @@ export interface AudioPlayerProps
    */
   showShuffle?: boolean;
   /**
-   * Track slider's color when there's value
+   * Track slider's color when there's value. Default is `#021C1E`
    */
   trackSliderColor?: string;
   /**
-   * Track slider's background color
+   * Track slider's background color. Default value is `#6FB98F`
    */
   trackSliderBg?: string;
   /**
-   * Color of the buttons in audio player
+   * Color of the buttons in audio player. Default is `#000`.
    */
   buttonColor?: string;
   /**
@@ -66,7 +66,15 @@ export interface AudioPlayerProps
   /**
    * track slider and controls position. Default is `row`.
    */
-  flexDirection?: "row" | "row-reverse" | "column" | "column-reverse" | "inherit" | "initial" | "unset"
+  flexDirection?: "row" | "row-reverse" | "column" | "column-reverse" | "inherit" | "initial" | "unset";
+  /**
+   * background color for buttons. Default is `#6fb98f`
+   */
+  buttonBgColor?: string | "";
+  /**
+   * text color of the audioplayer
+   */
+  textColor?: string;
   [key: string]: any;
 }
 
@@ -91,10 +99,12 @@ export interface AudioContextProps {
   volume: number;
   setVolume: Dispatch<SetStateAction<number>>;
 }
+
 export type AudioPlayerSrc = {
   title: string;
   artist?: string;
   artwork?: { src: string; [key: string]: any }[];
   url: string;
 }
+
 export type Loop = 'no-repeat' | 'repeat-once' | 'repeat-all';

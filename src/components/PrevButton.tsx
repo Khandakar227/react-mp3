@@ -1,8 +1,13 @@
-import React, { HTMLAttributes, memo } from 'react';
+import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import { PrevIcon } from '../icons/PrevIcon';
 
-export default memo(function PrevButton({ totalTrack, color, ...props }: { totalTrack: number,color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+interface ButtonProps extends Partial<HTMLAttributes<HTMLButtonElement>> {
+  bgColor: string;
+  totalTrack: number
+}
+
+export default memo(function PrevButton({ color, totalTrack, bgColor, style, ...props }: ButtonProps) {
   const { trackIndex, setTrackIndex } = useAudio();
 
   /**
@@ -15,7 +20,7 @@ export default memo(function PrevButton({ totalTrack, color, ...props }: { total
   
   return (
     <button
-    {...props}
+    {...props} style={{...style, "--buttonBgColor": bgColor} as CSSProperties}
       name="previous"
       title="Previous track"
       onClick={() => toPrevTrack()}

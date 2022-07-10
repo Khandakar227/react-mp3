@@ -1,10 +1,21 @@
-import React, { HTMLAttributes, memo } from 'react'
+import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
-import NextIcon from '../icons/NextIcon'
+import NextIcon from '../icons/NextIcon';
 
-export default memo(function NextButton({ totalTrack, color, ...props }: { totalTrack: number, color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
-    const {trackIndex, setTrackIndex} = useAudio();
-    
+interface ButtonProps extends Partial<HTMLAttributes<HTMLButtonElement>> {
+  totalTrack: number;
+  bgColor: string;
+}
+
+export default memo(function NextButton({
+  totalTrack,
+  style,
+  bgColor,
+  color,
+  ...props
+}: ButtonProps) {
+  const { trackIndex, setTrackIndex } = useAudio();
+
   /**
    * Go to next track
    */
@@ -14,8 +25,14 @@ export default memo(function NextButton({ totalTrack, color, ...props }: { total
   };
 
   return (
-    <button {...props} name="next" title="Next track" onClick={() => toNextTrack()}>
-    <NextIcon stroke={color} color={color} />
-  </button>
-  )
-})
+    <button
+      {...props}
+      style={{ ...style, '--buttonBgColor': bgColor } as CSSProperties}
+      name="next"
+      title="Next track"
+      onClick={() => toNextTrack()}
+    >
+      <NextIcon stroke={color} color={color} />
+    </button>
+  );
+});

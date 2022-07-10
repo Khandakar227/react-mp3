@@ -1,14 +1,20 @@
-import React, { HTMLAttributes, memo } from 'react';
+import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import PauseIcon from '../icons/PauseIcon';
 import PlayIcon from '../icons/PlayIcon';
 
-export default memo(function PlayPauseButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+interface ButtonProps extends Partial<HTMLAttributes<HTMLButtonElement>> {
+  bgColor: string;
+}
+
+export default memo(function PlayPauseButton({ color, bgColor, style, ...props }: ButtonProps) {
   const { isPlaying, setIsPlaying } = useAudio();
 
   if (!isPlaying)
     return (
-      <button {...props} name="play" onClick={() => setIsPlaying(true)} title="Play">
+      <button
+      {...props} style={{...style, "--buttonBgColor": bgColor} as CSSProperties}
+       name="play" onClick={() => setIsPlaying(true)} title="Play">
         <PlayIcon
           height={22}
           width={22}

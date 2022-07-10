@@ -1,12 +1,18 @@
-import React, { HTMLAttributes, memo } from 'react';
+import React, { CSSProperties, HTMLAttributes, memo } from 'react';
 import { useAudio } from '../audioContext';
 import SpeakerIcon from '../icons/SpeakerIcon';
 import SpeakerOffIcon from '../icons/SpeakerOffIcon';
 
-export default memo(function VolumeButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
+interface ButtonProps extends Partial<HTMLAttributes<HTMLButtonElement>> {
+  bgColor: string;
+}
+
+export default memo(function VolumeButton({ color, bgColor, style, ...props }: ButtonProps) {
   const { volume, setVolume } = useAudio();
   return (
-    <button {...props} name="volume" onClick={() => setVolume(volume > 0 ? 0 : 1)}>
+    <button
+    {...props} style={{...style, "--buttonBgColor": bgColor} as CSSProperties}
+    name="volume" onClick={() => setVolume(volume > 0 ? 0 : 1)}>
       {volume > 0 ? (
         <SpeakerIcon height={12} width={12} stroke={color} />
       ) : (

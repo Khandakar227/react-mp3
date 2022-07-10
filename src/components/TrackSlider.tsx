@@ -16,6 +16,7 @@ export default function TrackSlider({
   onScrub: Function
 }) {
   return (
+
     <div data-type="trackSlider-wraper" className={className}>
       <progress
         max={duration}
@@ -32,5 +33,6 @@ export default function TrackSlider({
         onChange={(e: { target: { value: string } }) => onScrub(e.target.value)}
       />
     </div>
+
   );
 }
