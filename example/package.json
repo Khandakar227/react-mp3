@@ -6,10 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run watch:css | vite",
-    "build": "vite build",
-    "watch:css": "tailwindcss -i src/index.css -o src/output.css --watch",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "npm run watch:css | vite build",
+    "watch:css": "tailwindcss -i src/index.css -o src/output.css --watch"
   },
   "dependencies": {
     "react-app-polyfill": "^3.0.0",
@@ -21,9 +19,7 @@
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
   },
-  "homepage": "https://khandakar227.github.io/react-mp3/example",
   "devDependencies": {
-    "gh-pages": "^4.0.0",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-syntax-highlighter": "^15.5.2",
