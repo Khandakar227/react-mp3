@@ -4,7 +4,6 @@ import NextIcon from '../icons/NextIcon'
 
 export default memo(function NextButton({ totalTrack, color, ...props }: { totalTrack: number, color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
     const {trackIndex, setTrackIndex} = useAudio();
-  console.log("Next");
     
   /**
    * Go to next track

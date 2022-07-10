@@ -4,7 +4,6 @@ import ShuffleIcon from '../icons/ShuffleIcon';
 
 export default memo(function ShuffleButton({ color, ...props }: { color?: string, props?:HTMLAttributes<HTMLButtonElement> }) {
   const { shuffle, setShuffle } = useAudio();
-  console.log("Shuffle");
 
   return (
     <button
