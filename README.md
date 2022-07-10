@@ -3,7 +3,7 @@
 <!-- <img src="./docs/Logo.jpg" alt="Svelte mp3 Logo" /> -->
 
 This is a light blazingly fast, simple audio player for react.
-Here's a [Demo](https://khandakar227.github.io/react-mp3/example)
+Here's a [Demo](https://react-mp3.netlify.app)
 
 ## Installation
 
